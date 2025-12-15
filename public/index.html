@@ -1,32 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SocketServer</title>
-  </head>
-  <body>
-    <h1>Welcome to SocketServer</h1>
 
-    <script src="/socket.io/socket.io.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SocketServer</title>
+</head>
 
-    <script>
-      var socket = io();
-      socket.on("connect", function () {
-        console.log("Connected to server");
-      });
+<body>
+  <h1>Welcome to SocketServer</h1>
 
-      socket.on("disconnect", function () {
-        console.log("Disconnected from server");
-      });
+  <script src="/socket.io/socket.io.js"></script>
 
-      socket.emit("message", {
-        nombre: "Elias",
-      });
+  <script>
+    var socket = io();
+    socket.on("connect", function () {
+      console.log("Connected to server");
+    });
 
-      socket.on("message", function (data) {
-        console.log("Message from server:", data);
-      });
-    </script>
-  </body>
+    socket.on("disconnect", function () {
+      console.log("Disconnected from server");
+    });
+
+    socket.emit("message", {
+      nombre: "Elias",
+    });
+
+    socket.on("new-message", function (data) {
+      console.log("Message from server:", data);
+    });
+
+    socket.on("active-bands", function (data) {
+      console.clear();
+      console.table(data);
+    });
+
+    // socket.on("emit-mensaje", function (data) {
+    //   console.log("New message received:", data);
+    // });
+
+
+  </script>
+</body>
+
 </html>

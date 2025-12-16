@@ -1,8 +1,6 @@
-
-
 const Bands = require("../models/bands");
 const Band = require("../models/band");
-const bands = new Bands()
+const bands = new Bands();
 
 bands.addBand(new Band("Metallica"));
 bands.addBand(new Band("Queen"));
@@ -26,7 +24,6 @@ module.exports = (io) => {
         admin: "Nuevo mensaje",
       });
     });
-
 
     client.on("emit-message", (payload) => {
       client.broadcast.emit("new-message", payload);

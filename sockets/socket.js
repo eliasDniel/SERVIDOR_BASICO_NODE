@@ -11,36 +11,36 @@ module.exports = (io) => {
   io.on("connection", (client) => {
     console.log("Cliente conectado");
 
-    client.emit("active-bands", bands.getBands());
+    // client.emit("active-bands", bands.getBands());
 
-    client.on("disconnect", () => {
-      console.log("Cliente desconectado");
-    });
+    // client.on("disconnect", () => {
+    //   console.log("Cliente desconectado");
+    // });
 
-    client.on("message", (payload) => {
-      console.log("Mensaje recibido:", payload);
+    // client.on("message", (payload) => {
+    //   console.log("Mensaje recibido:", payload);
 
-      io.emit("message", {
-        admin: "Nuevo mensaje",
-      });
-    });
+    //   io.emit("message", {
+    //     admin: "Nuevo mensaje",
+    //   });
+    // });
 
-    client.on("emit-message", (payload) => {
-      client.broadcast.emit("new-message", payload);
-    });
+    // client.on("emit-message", (payload) => {
+    //   client.broadcast.emit("new-message", payload);
+    // });
 
-    client.on("vote-band", (payload) => {
-      bands.voteBand(payload.id);
-      io.emit("active-bands", bands.getBands());
-    });
+    // client.on("vote-band", (payload) => {
+    //   bands.voteBand(payload.id);
+    //   io.emit("active-bands", bands.getBands());
+    // });
 
-    client.on("add-band", (payload) => {
-      bands.addBand(new Band(payload.name));
-      io.emit("active-bands", bands.getBands());
-    });
-    client.on("delete-band", (payload) => {
-      bands.deleteBand(payload.id);
-      io.emit("active-bands", bands.getBands());
-    });
+    // client.on("add-band", (payload) => {
+    //   bands.addBand(new Band(payload.name));
+    //   io.emit("active-bands", bands.getBands());
+    // });
+    // client.on("delete-band", (payload) => {
+    //   bands.deleteBand(payload.id);
+    //   io.emit("active-bands", bands.getBands());
+    // });
   });
 };
